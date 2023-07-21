@@ -1,14 +1,21 @@
 import React from 'react';
 import './app.less'
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Main from "./main/Main";
+import Card from "./card/Card";
+import Error from "./main/repo/Error";
 
 const App = () => {
 
     return (
         <BrowserRouter>
             <div className='container'>
-                <Route path="/" component={Main}/>
+                <Switch>
+                    <Route exact path="/" component={Main}/>
+                    <Route path="/card/:username/:reponame" component={Card}/>
+                    <Route path="/error" component={Error}/>
+                    <Redirect to={'/'}/>
+                </Switch>
             </div>
         </BrowserRouter>
     );
